@@ -1,0 +1,1 @@
+{"version":"1.0.0","name":"index.js","dependencies":{"ejs":{"version":"3.1.8"},"express":{"version":"4.18.1"},"lodash":{"version":"4.17.21"},"mongoose":{"version":"6.4.3"},"morgan":{"version":"1.10.0"},"nodemon":{"version":"2.0.18"}}}
