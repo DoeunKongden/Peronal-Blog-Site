@@ -1,5 +1,3 @@
-
-
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap');
 
 body {
@@ -24,6 +22,10 @@ ul {
 
 
 /* nav & footer styles */
+.site-tittle h1{
+    color: black;
+}
+
 nav {
     display: flex;
     justify-content: space-between;
@@ -50,8 +52,12 @@ nav h1 {
 
 nav p,
 nav a {
-    color: #777;
-    font-weight: 300;
+    color: rgb(0, 0, 0);
+    font-weight: 500;
+}
+
+nav a:hover{
+    color: crimson;
 }
 
 footer {
@@ -106,4 +112,38 @@ textarea {
     border: 0;
     font-size: 1.2em;
     cursor: pointer;
+}
+
+
+/* index styles */
+.blogs a {
+    display: block;
+    margin: 40px 0;
+    padding-left: 30px;
+    border-left: 6px solid crimson;
+}
+
+.blogs a:hover h3 {
+    color: crimson;
+}
+
+
+/* detail style */
+.details {
+    position: relative;
+}
+
+.delete {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 50%;
+    border: solid 1px;
+    padding: 8px;
+}
+
+.delete:hover {
+    cursor: pointer;
+    color: crimson;
+    box-shadow: 1px 2px 3px rgba(1, 0, 0, 0.5);
 }

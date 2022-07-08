@@ -1,0 +1,32 @@
+<%-include('../partials/head.ejs')%>
+
+    <body>
+        <%-include('../partials/nav.ejs')%>
+
+            <div class="create-blog content">
+                <form action="/blogs" method="POST"> <!--Sending form to this /blogs url , using post method to send a post request to the /blogs url-->
+                    <label for="title">Blog Tittle:</label>
+                    <input type="text"
+                        id="text"
+                        required
+                        name="title"
+                        >
+                    <label for="snippet">Blog Snippet:</label>
+                    <input type="text"
+                        id="snippet"
+                        required
+                        name="snippet"
+                        >
+                    <label for="body">Blog Body:</label>
+                    <textarea id="body"
+                        required
+                        name="body"
+                        ></textarea>
+                    <button>Submit</button>
+                </form>
+            </div>
+
+            <%-include('../partials/footer.ejs') %> 
+    </body>
+
+    </html>

@@ -1,0 +1,47 @@
+<html lang="en">
+<%- include("../partials/head.ejs")
+    %>
+
+    <body>
+        <%- include("../partials/nav.ejs")
+            %>
+
+            <div class="details content">
+                <h2>
+                    <%= blog.title
+                        %>
+                </h2>
+                <div class="content">
+                    <p>
+                        <%= blog.body
+                            %>
+                    </p>
+                </div>
+                <a class="delete"
+                    data-doc="<%= blog._id %>">
+                    <img src="/delete_black_24dp.svg" alt="delete icon">
+                </a>
+            </div>
+
+            <%- include("../partials/footer.ejs")
+                %>
+    </body>
+
+    <script>
+        const trashcan = document.querySelector('.delete');
+        
+        trashcan.addEventListener('click', (e) => {
+            const endpoint = `/blogs/${trashcan.dataset.doc}`;
+            
+            //using fetch api and specify that we want to send the endpoint
+            fetch(endpoint, {
+                method: 'DELETE', //what type of request we want to send
+            }) //fetch is asycronist which mean we can use .then .catch 
+                .then((response) => response.json()) //return a promise where by it passes our json data into an actual javascript object that we can use
+                .then((data) => window.location.href = data.redirect)
+                .catch((err)=>{console.log(err);})
+        });
+
+    </script>
+
+</html>

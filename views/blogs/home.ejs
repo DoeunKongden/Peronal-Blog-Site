@@ -1,21 +1,23 @@
-<%-include('./partials/head.ejs')  %> 
+<%-include('../partials/head.ejs')  %> 
 <body>
     <% const name='mario' %>
 
-    <%-include('./partials/nav.ejs')  %> 
+    <%-include('../partials/nav.ejs')  %> 
 
-    <div class="blog-content">
+    <div class="blogs">
         <h2>All blogs</h2>
         <%  if(blogs.length > 0){ %> 
             <% blogs.forEach(blog => {%>
+                <a class="single" href="/blogs/<%= blog._id %> "> <!--Setting route parameter for responding single blog-->
                 <h3 class="title"><%= blog.title %> </h3>
                 <p class="snippet"><%= blog.snippet %> </p>
+            </a>
             <%  }) %> 
         <% } else { %>
             <p>There are no blogs to display :( </p>  
         <% } %> 
     </div>
 
-    <%-include('./partials/footer.ejs') %> 
+    <%-include('../partials/footer.ejs') %> 
 </body>
 </html>
