@@ -34,7 +34,7 @@ const blog_delete = (req, res) => {
 
     Blog.findByIdAndDelete(id)
         .then(result => {
-            res.json({ redirect: '/' }); //respond with json
+            res.json({ redirect: '/blogs/blogs' }); //respond with json
         })
         .catch((err) => {
             console.log(err);
@@ -52,7 +52,7 @@ const create_post = (req, res) => {
 
     blog.save()
         .then((result) => {
-            res.redirect('/');
+            res.redirect('/blogs/blogs');
         })
         .catch((err) => {
             console.log(err)

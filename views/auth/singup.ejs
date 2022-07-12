@@ -1,0 +1,50 @@
+<%-include('../partials/head.ejs')
+    %>
+    <html>
+
+    <body>
+        <%-include('../partials/nav.ejs')
+            %>
+            <form>
+                <div class="cont">
+                    <div class="form sign-in">
+                        <h2 style="margin-right: -15%;">Let Create Your Account</h2>
+                        <label>
+                            <span>Email</span>
+                            <input type="email"
+                                required
+                                name="email">
+                            <div class="email error"></div>
+                        </label>
+
+
+                        <label>
+                            <span>Password</span>
+                            <input type="password"
+                                name="password"
+                                required>
+                            <div class="password erro"></div>
+                        </label>
+                        <button type="submit"
+                            class="submit" style="margin-right: 70%;">SingUp</button>
+                    </div>
+                </div>
+            </form>
+            <%-include('../partials/footer.ejs')
+                %>
+    </body>
+
+    <script>
+        const form= document.querySelector('form');
+
+        form.addEventListener('submit',(e)=>{
+            e.preventDefault(); //prevent page refresh
+
+            //getting value
+            const email = form.email.value;
+            const password  = form.password.value;
+
+            console.log(email,password)
+        })
+    </script>
+    </html>
