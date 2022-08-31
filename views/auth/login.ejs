@@ -10,30 +10,64 @@
                         <h2>Welcome Back</h2>
                         <label>
                             <span>Email</span>
-                            <input type="email" required name="email">
+                            <input type="email"
+                                required
+                                name="email">
+                            <div class="email error"></div>
                         </label>
                         <label>
                             <span>Password</span>
-                            <input type="password" name="password" required>
+                            <input type="password"
+                                name="password"
+                                required>
+                            <div class="password error"></div>
                         </label>
                         <button type="submit"
-                            class="submit" style="margin-right: 90%;">SingUp</button>
+                            class="submit"
+                            style="margin-right: 90%;">Login</button>
                     </div>
                 </div>
             </form>
             <%-include('../partials/footer.ejs')
                 %>
     </body>
-
     <script>
         const form = document.querySelector('form');
+        const emailError = document.querySelector('.email.error');
+        const passwordError = document.querySelector('.password.error')
 
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async  (e) => {
             e.preventDefault(); //prevent page refresh
+
+            //reset error
+            emailError.textContent = ''
+            passwordError.textContent = ''
+
             //getting value
             const email = form.email.value;
             const password = form.password.value;
 
-            console.log(email, password)
+            try {
+                const res = await fetch('/login', {
+                    method: 'POST',
+                    body: JSON.stringify({ email: email, password: password }), //stringify it as a json object 
+                    headers: { 'Content-Type': 'application/json' } //
+                });
+
+                const data = await res.json() //get data out from the res
+                console.log(data)
+
+                if (data.errors) {
+                    emailError.textContent = data.errors.email
+                    passwordError.textContent = data.errors.password
+                }
+                if (data.user) {
+                    location.assign('/blogs/blogs')
+                }
+            }
+            catch (err) {
+                console.log(err)
+            }
+
         })
     </script>

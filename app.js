@@ -2,24 +2,25 @@ const express = require('express')
 const morgan = require('morgan')
 const mongoose = require('mongoose');
 const blogsRoutes = require('./routes/blogsRoutes')
-const authController = require('./controllers/authController')
+const authController = require('./controllers/authController');
+const cookieParser = require('cookie-parser');
 // const AuthRoutes = require('./routes/authRoutes')
 
 
 const app = express();
-const dbUrl = 'mongodb+srv://doeunkongden:den112233@blogcluster.vavfo.mongodb.net/BlogDatabase?retryWrites=true&w=majority'
+const dbUrl = 'mongodb+srv://doeunkongden:den112233@blogcluster.vavfo.mongodb.net/BlogDatabase?retryWrites=true&w=majority';
 
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
     .then((result) => app.listen(3000))
     .catch((error) => console.log(error));
 
-app.set('view engine', 'ejs')
-
+//middleware 
+app.use(cookieParser());
+app.set('view engine', 'ejs');
 app.use(express.json());
-
-app.use(express.static('public'))
-app.use(express.urlencoded({ extended: true }))
-app.use(morgan('dev'))
+app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
+app.use(morgan('dev'));
 
 
 //route
@@ -44,12 +45,10 @@ app.post('/signup', authController.singup_post)
 app.use('/blogs/', blogsRoutes);
 
 
-
 app.use((req, res, next) => {
     console.log('new request made');
     console.log('host:', req.hostname);
     console.log('path:', req.path);
     console.log('method:', req.method);
-
     next();
 })
